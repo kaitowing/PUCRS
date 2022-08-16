@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=TabelaDePontuacao
+comment1.params=n
+comment1.target=TabelaDePontuacao(int)
+comment2.params=nome
+comment2.target=java.lang.String\ completaNome(java.lang.String)
+comment3.params=time
+comment3.target=boolean\ inserirTime(java.lang.String)
+comment4.params=cod
+comment4.target=Pontuacao\ buscaTime(int)
+comment5.params=cod
+comment5.target=int\ buscaIndice(int)
+comment6.params=cod
+comment6.target=boolean\ excluirTime(int)
+comment7.params=cod\ nome
+comment7.target=boolean\ alteraClube(int,\ java.lang.String)
+comment8.params=
+comment8.target=void\ ordenaTabela()
+comment9.params=
+comment9.target=void\ exibeTabela()
+numComments=10
