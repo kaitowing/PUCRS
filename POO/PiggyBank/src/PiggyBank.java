@@ -22,12 +22,10 @@ public class PiggyBank {
     }
 
     public Moeda retreatCoin(){
-        Moeda coin = coins[coins.length-1];
-            for(int i = 0; i<cont-1; i++){
-                coins[i] = coins[i+1];
-            }
-            cont--;
-            return coin;
+        Moeda coin = coins[cont-1];
+        coins[cont-1] = null;
+        cont--;
+        return coin;
     }
 
     public int getQuantCoins(){
