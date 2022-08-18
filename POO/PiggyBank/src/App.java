@@ -45,27 +45,33 @@ public class App {
                             opt2 = in.nextInt();
                             switch(opt2){
                                 case 1:
-                                    bank.insert(NomeMoeda.UmReal);
+                                if(bank.insert(NomeMoeda.UmReal) == false) 
+                                    System.out.println("PiggyBank full.");
                                     break;
                                 
                                 case 2:
-                                    bank.insert(NomeMoeda.Cinquenta);
+                                    if(bank.insert(NomeMoeda.Cinquenta) == false) 
+                                    System.out.println("PiggyBank full.");
                                     break;
                                 
                                 case 3:
-                                    bank.insert(NomeMoeda.VinteCinco);
+                                    if(bank.insert(NomeMoeda.VinteCinco) == false) 
+                                    System.out.println("PiggyBank full.");
                                     break;
         
                                 case 4:
-                                    bank.insert(NomeMoeda.Dez);
+                                    if(bank.insert(NomeMoeda.Dez) == false) 
+                                    System.out.println("PiggyBank full.");
                                     break;
         
                                 case 5:
-                                    bank.insert(NomeMoeda.Cinco);
+                                    if(bank.insert(NomeMoeda.Cinco) == false) 
+                                    System.out.println("PiggyBank full.");
                                     break;
         
                                 case 6:
-                                    bank.insert(NomeMoeda.Um);
+                                    if(bank.insert(NomeMoeda.Um) == false) 
+                                    System.out.println("PiggyBank full.");
         
                             }
                         } while (opt2 != 7);
@@ -81,7 +87,8 @@ public class App {
                         opt2 = in.nextInt();
                         switch(opt2){
                             case 1:
-                                bank.retreatCoin();
+                                if(bank.retreatCoin()==null)
+                                System.out.println("PiggyBank empty.");
                                 break;
                         }
                     } while (opt2 != 2);
