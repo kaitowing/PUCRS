@@ -1,5 +1,6 @@
+package binarysearch;
 import java.util.*;
-public class App {
+public class AppSearch {
     public static void main(String[] args) {
         Test vetores = new Test();
 

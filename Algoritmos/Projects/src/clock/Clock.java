@@ -1,6 +1,6 @@
 package clock;
 
-public class App {
+public class Clock {
     private long tempoIni, tempoFim;
 
         public void initClock() {

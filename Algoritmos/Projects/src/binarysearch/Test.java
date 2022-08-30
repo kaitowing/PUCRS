@@ -1,3 +1,4 @@
+package binarysearch;
 import java.util.*;
 public class Test {
     private long tempoIni;

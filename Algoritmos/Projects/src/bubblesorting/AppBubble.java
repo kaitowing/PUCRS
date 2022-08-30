@@ -1,7 +1,5 @@
 package bubblesorting;
-
-import clock.App;
-public class App {
+public class AppBubble {
     public static void main(String[] args) throws Exception {
         int[] v = new int[25];
         for (int i = 0; i < v.length; i++) {
