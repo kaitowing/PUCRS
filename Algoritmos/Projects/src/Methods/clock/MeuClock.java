@@ -1,7 +1,12 @@
-package clock;
+package Methods.clock;
 
-public class Clock {
+public class MeuClock {
     private long tempoIni, tempoFim;
+
+    public MeuClock(){
+        this.tempoFim = 0;
+        this.tempoIni = 0; 
+    }
 
         public void initClock() {
         tempoIni = tempoFim = System.nanoTime();
