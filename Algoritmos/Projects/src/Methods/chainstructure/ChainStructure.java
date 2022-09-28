@@ -1,13 +1,14 @@
 package Methods.chainstructure;
-public class ChainStructure {
+import Programs.*;
+public class ChainStructure<E> implements ListTAD<E> {
     private Nodo inicio;
-    private int qtElements;
+    private int qtelements;
     private class Nodo{
         public Nodo prox;
-        public String valor;
+        public E valor;
         
-        public Nodo (String val){
-            valor = val; 
+        public Nodo (E element){
+            valor = element; 
             prox = null;
         }
     }
@@ -15,25 +16,80 @@ public class ChainStructure {
     public ChainStructure(){
         inicio = null;
     }
-
-    public boolean isEmpty(){
-        return inicio == null;
-    }
     
-    public boolean search(String elem){
-        for(Nodo nodo = inicio; nodo != null; nodo = nodo.prox)
-        if (elem == nodo.valor) return true; 
-        return false;                     
+    @Override
+    public void add(E element) {
+        int cont = 0;
+        Nodo nodo = inicio;
+        while(cont < qtelements-1){
+            nodo = nodo.prox;
+            cont++;
+        }
+        nodo.prox = new Nodo(element);
+        qtelements++;
     }
 
-    public int getQtElements() {
-        return qtElements;
+    @Override
+    public void add(int pos, E element) {
+        if(pos==0){
+            addFirst(element);
+        }else if(pos == qtelements){
+            addLast(element);
+        }else if((pos>0) && (pos < qtelements)){
+            int cont = 0;
+            Nodo nodo = inicio, aux;
+            while(cont < pos-1){
+                nodo = nodo.prox;
+                cont++;
+            }
+            aux = nodo.prox;
+            nodo.prox = new Nodo(element);
+            nodo = nodo.prox;
+            nodo.prox = aux;
+            qtelements++;
+        }
     }
 
-    public String searchForPlace(int i){
+    @Override
+    public boolean remove(int pos) {
+        if(pos==0){
+            removeFirst();
+            return true;
+        }else if(pos == qtelements-1){
+            removeLast();
+            return true;
+        }else if((pos>0) && (pos<qtelements)){
+            int cont = 0;
+            Nodo nodo = inicio;
+            Nodo aux;
+            while(cont < pos-2){
+                nodo = nodo.prox;
+                cont++;
+            }
+            aux = nodo.prox;
+            nodo.prox = aux.prox;
+            qtelements--;
+            return true;
+        }else return false;
+    }
+
+    @Override
+    public void remove(E element) {
+        int cont =0;
+        for(Nodo nodo = inicio; nodo != null; nodo = nodo.prox){
+            if (element == nodo.valor){
+                remove(cont);
+                qtelements--;
+            }
+            cont++;
+        }
+    }
+
+    @Override
+    public E get(int i) {
         if(i==0){
             return inicio.valor;
-        }else if((i>0) && (i<qtElements)){
+        }else if((i>0) && (i<qtelements)){
             int cont = 0;
             Nodo nodo = inicio;
             while(cont < i){
@@ -44,94 +100,100 @@ public class ChainStructure {
         }else throw new Error();
     }
 
-  public void addFirst(String elem){
-        Nodo nodo = new Nodo(elem);
-        nodo.prox = inicio;
-        inicio = nodo;
-        qtElements++;
-    }
-    
-    public void removeFirst(){
-        if(inicio != null){
-            inicio = inicio.prox;
-            qtElements--;
-        }
+    @Override
+    public void set(int index, E element) {
+        remove(index);
+        add(index, element);
     }
 
-    public void addLast(String elem){
+    @Override
+    public E search(E element) {
+        for(Nodo nodo = inicio; nodo != null; nodo = nodo.prox)
+        if (element == nodo.valor) return nodo.valor; 
+        return null;  
+    }
+
+    @Override
+    public int size() {
+        return qtelements;
+    }
+
+    @Override
+    public int count(E element) {
+        int cont = 0;
+        for(Nodo nodo = inicio; nodo != null; nodo = nodo.prox)
+        if (element == nodo.valor) cont++;
+        return cont;
+    }
+
+    @Override
+    public void clean() {
+        inicio = null;
+        qtelements = 0;
+    }
+
+    @Override
+    public void addFirst(E element) {
+        Nodo nodo = new Nodo(element);
+        nodo.prox = inicio;
+        inicio = nodo;
+        qtelements++;
+    }
+
+    @Override
+    public void addLast(E element) {
         int cont = 0;
         Nodo nodo = inicio;
-        while(cont < qtElements-1){
+        while(cont < qtelements-1){
             nodo = nodo.prox;
             cont++;
         }
-        nodo.prox = new Nodo(elem);
-        qtElements++;
-
+        nodo.prox = new Nodo(element);
+        qtelements++;
     }
 
-    public boolean add(int pos, String elem){
-        if(pos==0){
-            addFirst(elem);
-            return true;
-        }else if(pos == qtElements){
-            addLast(elem);
-            return true;
-        }else if((pos>0) && (pos < qtElements)){
-            int cont = 0;
-            Nodo nodo = inicio, aux;
-            while(cont < pos-1){
-                nodo = nodo.prox;
-                cont++;
-            }
-            aux = nodo.prox;
-            nodo.prox = new Nodo(elem);
-            nodo = nodo.prox;
-            nodo.prox = aux;
-            qtElements++;
-            return true;
-        }
-        return false;
+    @Override
+    public E getFirst() {
+        return inicio.prox.valor;
     }
 
-    public boolean remove(int pos){
-        if(pos==0){
-            removeFirst();
-            return true;
-        }else if(pos == qtElements-1){
-            removeLast();
-            return true;
-        }else if((pos>0) && (pos<qtElements)){
-            int cont = 0;
-            Nodo nodo = inicio;
-            Nodo aux;
-            while(cont < pos-2){
-                nodo = nodo.prox;
-                cont++;
-            }
-            aux = nodo.prox;
-            nodo.prox = aux.prox;
-            qtElements--;
-            return true;
-        }else return false;
-    }
-
-    public void removeLast(){
+    @Override
+    public E getLast() {
         int cont = 0;
         Nodo nodo = inicio;
-        while(cont < qtElements-1){
+        while(cont < qtelements-1){
+            nodo = nodo.prox;
+            cont++;
+        }
+        return nodo.valor;
+    }
+
+    @Override
+    public void removeFirst() {
+        int cont = 0;
+        Nodo nodo = inicio;
+        while(cont < qtelements-1){
             nodo = nodo.prox;
             cont++;
         }
         nodo.prox = null;
-        qtElements--;
+        qtelements--;
     }
-    
-    public String exibeLista(){
-        if(isEmpty()) return "Lista vazia\n";
-        String str = "Lista Encadeada: ";
-        for (Nodo nodo = inicio; nodo != null; nodo = nodo.prox)
-            str+= " "+ nodo.valor;
-        return str + "\n";
+
+    @Override
+    public void removeLast() {
+        int cont = 0;
+        Nodo nodo = inicio;
+        while(cont < qtelements-1){
+            nodo = nodo.prox;
+            cont++;
+        }
+        nodo.prox = null;
+        qtelements--;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return inicio == null;
     }
 }

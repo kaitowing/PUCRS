@@ -2,7 +2,7 @@ package Programs;
 import Methods.chainstructure.ChainStructure;
 public class Test{
 
-	public static void mostraLista(ChainStructure l)
+	public static void shwoList(ChainStructure l)
 	{
 				String s="";
 				int i = 0;
@@ -16,14 +16,10 @@ public class Test{
 					System.out.print(s + " ");
 				}
 					
-				System.out.println(" Fim");
-
-		System.out.println("Fim mostraLista()");
+				System.out.println(" End.");
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 		ChainStructure l = new ChainStructure();		
 		String s1 = new String("a");
 		String s2 = new String("b");
@@ -32,15 +28,17 @@ public class Test{
 		String s5 = new String("e");
 
 		//addFirst()
+
 		System.out.println("\n\n addFirst()\n");
 		l.addFirst(s1);
 		l.addFirst(s2);
 		l.addFirst(s3);
 		l.addFirst(s4);
 		l.addFirst(s5);
-		mostraLista(l);
+		shwoList(l);
 		//System.exit(0);
-		//Fim do primeiro teste. Comentar ou descomentar o exit(0).
+
+		//End of First test.
 
 		//-------------------------------		
 		//	add() no final		
@@ -50,43 +48,44 @@ public class Test{
 		l.addLast(s3);
 		l.addLast(s4);
 		l.addLast(s5);
-		mostraLista(l);		
+		shwoList(l);		
 		//System.exit(0);
-		//Fim do segundo teste. Comentar ou descomentar o exit(0).
+
+		//End of second test.
 
 		//-------------------------------		
 		//	get()		
 		System.out.println("\n\n get() \n");
-		mostraLista(l);
+		shwoList(l);
 		
 		for (int i = 0; i < l.getQtElements(); i++)
             System.out.println("i = " + i + "  get(i) = " + l.searchForPlace(i));
 		try {
             System.out.println(l.searchForPlace(30));
-			System.out.println("Encontrou o elemento de nro 30!!  :-( ");
+			System.out.println("Found element 30.");
 		}
 		catch (Error ex) {
-			System.out.println("N�o encontrou o elemento de nro 30!!");
+			System.out.println("Element 30 not found.");
 		}
 		try {
             System.out.println(l.searchForPlace(-1));
-			System.out.println("Encontrou o elemento de nro -1!!  :-( ");
+			System.out.println("Found element -1.");
 		}
 		catch (Error ex) {
-			System.out.println("N�o encontrou o elemento de nro -1!!");
+			System.out.println("Element -1 not found.");
 		}
 
 		
 		l.remove(4);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(3);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(2);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(1);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 
 
 		//-------------------------------		
@@ -102,71 +101,68 @@ public class Test{
             System.out.println(l.searchForPlace(30));
 		}
 		catch (Error ex) {
-			System.out.println("N�o encontrou o elemento de nro 30!!");
+			System.out.println("Element 30 not found.");
 		}
 
-		mostraLista(l);
+		shwoList(l);
 
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(0);
-		mostraLista(l);
-
-		//-------------------------------		
+		shwoList(l);
 
 		//-------------------------------		
-
+		//-------------------------------		
 		//		add(i) e remove(i)		
-
 		System.out.println("\n\nadd(i) e remove(i)\n");
 		l.add(0, s1);
 		l.add(1, s5);
 		l.add(1, s3);
 		l.add(2, s4);
 		l.add(1, s2);
-		mostraLista(l);
-
+		shwoList(l);
+		
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 
 		l.add(0, s4);
 		l.add(0, s1);
 		l.add(2, s5);
 		l.add(1, s3);
 		l.add(1, s2);
-		mostraLista(l);
+		shwoList(l);
 
 		try {
 			l.remove(5);
 		}
 		catch (Error ex){
-			System.out.println("N�o existe o elemento da pos 5");
+			System.out.println("Element number 5 does not exist.");
 		}
-		mostraLista(l);
+		shwoList(l);
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(3);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(1);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 		l.remove(0);
-		mostraLista(l);
+		shwoList(l);
 
 	}
 
