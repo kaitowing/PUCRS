@@ -1,5 +1,4 @@
 package Methods.chainstructure;
-import Programs.*;
 public class ChainStructure<E> implements ListTAD<E> {
     private Nodo inicio;
     private int qtelements;
@@ -19,14 +18,18 @@ public class ChainStructure<E> implements ListTAD<E> {
     
     @Override
     public void add(E element) {
-        int cont = 0;
-        Nodo nodo = inicio;
-        while(cont < qtelements-1){
-            nodo = nodo.prox;
-            cont++;
+        if(qtelements==0){
+            addFirst(element);
+        }else{
+            int cont = 0;
+            Nodo nodo = inicio;
+            while(cont < qtelements-1){
+                nodo = nodo.prox;
+                cont++;
+            }
+            nodo.prox = new Nodo(element);
+            qtelements++;
         }
-        nodo.prox = new Nodo(element);
-        qtelements++;
     }
 
     @Override
@@ -87,6 +90,9 @@ public class ChainStructure<E> implements ListTAD<E> {
 
     @Override
     public E get(int i) {
+        if(qtelements==0){
+            return null;
+        }
         if(i==0){
             return inicio.valor;
         }else if((i>0) && (i<qtelements)){
@@ -97,7 +103,7 @@ public class ChainStructure<E> implements ListTAD<E> {
                 cont++;
             }
             return nodo.valor;
-        }else throw new Error();
+        }else return null;
     }
 
     @Override
@@ -142,23 +148,33 @@ public class ChainStructure<E> implements ListTAD<E> {
 
     @Override
     public void addLast(E element) {
-        int cont = 0;
-        Nodo nodo = inicio;
-        while(cont < qtelements-1){
-            nodo = nodo.prox;
-            cont++;
+        if(qtelements==0){
+            addFirst(element);
+        }else{
+            int cont = 0;
+            Nodo nodo = inicio;
+            while(cont < qtelements-1){
+                nodo = nodo.prox;
+                cont++;
+            }
+            nodo.prox = new Nodo(element);
+            qtelements++;
         }
-        nodo.prox = new Nodo(element);
-        qtelements++;
     }
 
     @Override
     public E getFirst() {
+        if(qtelements==0){
+            return null;
+        }
         return inicio.prox.valor;
     }
 
     @Override
     public E getLast() {
+        if(qtelements==0){
+            return null;
+        }
         int cont = 0;
         Nodo nodo = inicio;
         while(cont < qtelements-1){
@@ -170,30 +186,55 @@ public class ChainStructure<E> implements ListTAD<E> {
 
     @Override
     public void removeFirst() {
-        int cont = 0;
-        Nodo nodo = inicio;
-        while(cont < qtelements-1){
-            nodo = nodo.prox;
-            cont++;
+        if(qtelements==1){
+            inicio = null;
+            qtelements--;
+        }else{
+            int cont = 0;
+            Nodo nodo = inicio;
+            while(cont < qtelements-1){
+                nodo = nodo.prox;
+                cont++;
+            }
+            nodo.prox = null;
+            qtelements--;
         }
-        nodo.prox = null;
-        qtelements--;
     }
 
     @Override
     public void removeLast() {
-        int cont = 0;
-        Nodo nodo = inicio;
-        while(cont < qtelements-1){
-            nodo = nodo.prox;
-            cont++;
+        if(qtelements==1){
+            removeFirst();
+        }else{
+            int cont = 0;
+            Nodo nodo = inicio;
+            while(cont < qtelements-1){
+                nodo = nodo.prox;
+                cont++;
+            }
+            nodo.prox = null;
+            qtelements--;
         }
-        nodo.prox = null;
-        qtelements--;
     }
 
     @Override
     public boolean isEmpty() {
         return inicio == null;
+    }
+
+    @Override
+    public int updateAll(E velha, E nova){
+        int cont=0;
+        for(Nodo nodo = inicio; nodo != null; nodo = nodo.prox){
+            if(nodo.valor == velha){
+                nodo.valor = nova;
+                cont++;
+            }
+        }
+        return cont;
+    }
+
+    public int getQtElements(){
+        return qtelements;
     }
 }

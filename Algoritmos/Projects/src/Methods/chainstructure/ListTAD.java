@@ -1,5 +1,4 @@
-
-import java.util.*;
+package Methods.chainstructure;
 
 /*********
  * Interface para o T.A.D. Lista.
@@ -144,4 +143,8 @@ public interface ListTAD<E> {
 	 * @return Elemento armazenado na lista.
 	 */
 	public E getLast();	
+
+	public int updateAll(E velha, E nova);
+
+	public int getQtElements();
 }
